@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#kills "7-highlander", the previous task
+kill -9 "$(pgrep -f highlander)"
