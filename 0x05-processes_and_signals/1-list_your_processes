@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #Displays more info about currently running PIDs
 
-ps -u
+ps -a -x -u -f
