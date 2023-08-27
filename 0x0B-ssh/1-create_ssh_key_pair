@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This bash script automatically creates an RSA pair key
+# With a given passphrase and path_to_public/private key
+
+passphrase="betty"
+ssh-keygen -t rsa -b 4096 -N "$passphrase" -f school
