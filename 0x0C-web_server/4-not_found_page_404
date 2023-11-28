@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# This is a script to install nginx on a server
+# configuring nginx to redirect to another page
+# configuring nginx server to have custom 404 page
+
+link="https://www.linkedin.com/in/achrafelkhnissi/"
+config="/etc/nginx/sites-available/default"
+error_file="/var/www/html/404.html"
+
+apt-get -y update
+apt-get -y install nginx
+
+if [[ ! $(pgrep nginx) ]]; then
+    service nginx start
+fi
+
+ufw allow 'Nginx HTTP'
+
+chown -R "$USER":"$USER" /var/www/html
+chmod -R 755 /var/www
+
+root_dir=$(grep "root" /etc/nginx/sites-available/default | cut -d " " -f 2 | tr -d ";" | head -1)
+
+if [[ ! -d $root_dir ]]; then
+    sudo mkdir -p "$root_dir"
+fi
+
+echo "Hello World!" > "$root_dir"/index.html
+
+response=$(curl -s http://localhost)
+if [[ $response == "Hello World!" ]]; then
+  echo "Nginx installation and configuration successful!"
+else
+  echo "Nginx installation or configuration failed."
+  exit 1
+fi
+
+sudo sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://linkedin.com/in/achrafelkhnissi/ permanent;" $config
+
+
+echo "Ceci n'est pas une page" > "$error_file"
+sed -i "/listen 80 default_server;/a error_page 404 /404.html; location = /404.html {root  /var/www/html;\n internal;}" $config
+
+if nginx -t | grep "successful"; then
+  echo "Nginx configuration failed."
+  exit 1
+fi
+
+nginx -s reload
+
+service nginx restart
+
+exit 0
