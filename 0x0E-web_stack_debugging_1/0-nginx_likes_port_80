@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# fix curl/connectivity issues at port 80
+cp -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
