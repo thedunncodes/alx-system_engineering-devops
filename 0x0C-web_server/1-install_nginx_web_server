@@ -1,27 +1,16 @@
 #!/usr/bin/env bash
-# This is a script to install nginx on a server
+# nginx installation on a server
 
-apt-get -y update
-apt-get -y install nginx
+sudo apt update
+sudo apt -y install nginx
 
-if [[ ! $(pgrep nginx) ]]; then
-    service nginx start
-fi
+sudo service nginx start
 
-root_dir=$(grep "root" /etc/nginx/sites-available/default | cut -d " " -f 2 | tr -d ";" | head -1)
-
-if [[ ! -d $root_dir ]]; then
-    sudo mkdir -p "$root_dir"
-fi
-
-echo "Hello World!" > "$root_dir"/index.html
-
-response=$(curl -s http://localhost)
-if [[ $response == "Hello World!" ]]; then
-  echo "Nginx installation and configuration successful!"
+dir="/var/www/html"
+if [ -d "$dir" ]; then
+        touch /var/www/html/index.html
+        echo "Hello World!" >> /var/www/html/index.html
 else
-  echo "Nginx installation or configuration failed."
-  exit 1
+        echo "Problem in parsing the code"
 fi
-
-exit 0
+sudo service nginx restart
