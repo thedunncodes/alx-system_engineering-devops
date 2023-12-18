@@ -1,3 +1,7 @@
+eval $("ssh-agent")
+ssh-add ~/.ssh/school
+ssh ubuntu@100.27.13.122
+
 sudo apt-get update
 sudo apt-get install -y ufw
 
