@@ -1,0 +1,11 @@
+# server ID
+server-id = 5 
+
+# log bin directive
+log_bin = /var/log/mysql/mysql-bin.log
+
+# Binary log file directive
+binlog_do_db = tyrell_corp
+
+# relay log file
+relay-log = /var/log/mysql/mysql-relay-bin.log
