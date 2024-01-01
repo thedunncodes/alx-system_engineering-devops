@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# This scripts sets up and configure haproxy on a server
 sudo apt -y update
 sudo apt -y upgrade
 
