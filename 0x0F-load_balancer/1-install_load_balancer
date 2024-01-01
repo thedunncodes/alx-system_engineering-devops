@@ -1,37 +1,24 @@
 #!/usr/bin/env bash
-# Load balancer server setup
 
-sudo apt update
-sudo apt upgrade -y
+sudo apt -y update
+sudo apt -y upgrade
 
-sudo apt install -y haproxy
+sudo apt-get -y update
+sudo apt-get -y install haproxy
+sudo systemctl start haproxy
 
-haproxy_config="/etc/haproxy/haproxy.cfg"
-sudo cp "$haproxy_config" "$haproxy_config.bak"
+echo "frontend http
+	bind *:80
+	mode http
 
-sudo tee "$haproxy_config" > /dev/null <<EOL
-global
-    log /dev/log local0
-    log /dev/log local1 notice
-    daemon
+	default_backend web-backend
 
-defaults
-    log global
-    mode http
-    timeout connect 5000ms
-    timeout client 50000ms
-    timeout server 50000ms
+backend web-backend
+	balance roundrobin
+        server web-01 100.27.13.122:80 check
+        server web-02 54.236.12.237:80 check" >> /etc/haproxy/haproxy.cfg
 
-frontend webapp
-    bind *:80
-    default_backend webservers
-
-backend webservers
-    balance roundrobin
-    server web-01 [STUDENT_ID]-web-01:80 check
-    server web-02 [STUDENT_ID]-web-02:80 check
-EOL
-
-sudo haproxy -f "$haproxy_config" -c
 
 sudo systemctl restart haproxy
+
+echo -e "DONE.\n"
