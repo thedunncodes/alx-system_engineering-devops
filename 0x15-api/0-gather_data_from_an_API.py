@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
     A script thatlists an employees data and completed tasks
 """
