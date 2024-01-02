@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""This script exports data in json format"""
+'''
+This script exports data in json format
+'''
 
 from sys import argv
 import json
@@ -20,10 +22,10 @@ data = {f"{argv[1]}": []}
 
 
 def export_json():
-    """
+    '''
         This function reformats a json data and exports it
         into a file.
-    """
+    '''
 
     for user in task_data:
         data.get(f'{argv[1]}').append(

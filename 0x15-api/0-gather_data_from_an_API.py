@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""A script thatlists an employees data and completed tasks"""
+'''
+A script thatlists an employees data and completed tasks
+'''
 
 from sys import argv
 import json
@@ -20,9 +22,9 @@ Tasks = []
 
 
 def employee_task():
-    """
+    '''
         This fucntion lists an employees data and completed tasks
-    """
+    '''
 
     completed_task = 0
     for user in task_data:
