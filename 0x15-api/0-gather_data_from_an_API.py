@@ -24,6 +24,7 @@ def employee_task():
     """
         This fucntion lists an employees data and completed tasks
     """
+
     completed_task = 0
     for user in task_data:
         if user['completed']:
