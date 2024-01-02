@@ -2,9 +2,8 @@
 """
     This script exports data in json format
 """
-
-from sys import argv
 import json
+from sys import argv
 from urllib import request
 
 task_url = f'https://jsonplaceholder.typicode.com/users/{argv[1]}/todos'
