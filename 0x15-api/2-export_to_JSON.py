@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""
-    This script exports data in json format
-"""
-import json
+"""This script exports data in json format"""
+
 from sys import argv
+import json
 from urllib import request
 
 task_url = f'https://jsonplaceholder.typicode.com/users/{argv[1]}/todos'

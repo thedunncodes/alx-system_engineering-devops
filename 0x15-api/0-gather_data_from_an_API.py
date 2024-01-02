@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""
-    A script thatlists an employees data and completed tasks
-"""
-import json
+"""A script thatlists an employees data and completed tasks"""
+
 from sys import argv
+import json
 from urllib import request
 
 task_url = f'https://jsonplaceholder.typicode.com/users/{argv[1]}/todos'
