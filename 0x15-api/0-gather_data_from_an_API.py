@@ -3,8 +3,8 @@
 A script thatlists an employees data and completed tasks
 '''
 
-from sys import argv
 import json
+from sys import argv
 from urllib import request
 
 if __name__ == '__main__':
