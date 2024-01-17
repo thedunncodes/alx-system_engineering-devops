@@ -3,8 +3,8 @@
 A script to query reddit api
 '''
 
-from sys import argv
 import requests
+from sys import argv
 
 
 header = {"user_agent": "Alx_api"}
