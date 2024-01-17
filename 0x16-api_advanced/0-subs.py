@@ -7,14 +7,13 @@ import requests
 from sys import argv
 
 
-header = {"user_agent": "Alx_api"}
-subreddit = argv[1]
-
-
 def number_of_subscribers(subreddit):
     '''
     Returns number of subscribers in a subreddit
     '''
+
+    header = {"user_agent": "Alx_api"}
+
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
 
     response = requests.get(url, headers=header)
@@ -27,4 +26,4 @@ def number_of_subscribers(subreddit):
 
 
 if __name__ == "__main__":
-    number_of_subscribers(subreddit)
+    number_of_subscribers(argv[1])
