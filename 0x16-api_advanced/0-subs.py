@@ -12,7 +12,7 @@ def number_of_subscribers(subreddit):
     Returns number of subscribers in a subreddit
     '''
 
-    header = {"user_agent": "Alx_api"}
+    header = {'user_agent': 'Alx_api'}
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
     response = requests.get(url, headers=header, allow_redirects=False)
 
@@ -20,7 +20,7 @@ def number_of_subscribers(subreddit):
         data = response.json()
         print(data.get('data').get('subscribers'))
     else:
-        return 0
+        return (0)
 
 
 if __name__ == "__main__":
