@@ -1,23 +1,16 @@
 #!/usr/bin/python3
-'''
-A script to query reddit api
-'''
-
+""" module to query reddit """
 import requests
-from sys import argv
+import sys
 
 
 def number_of_subscribers(subreddit):
-    '''
-    Returns number of subscribers in a subreddit
-    '''
-
-    header = {'user_agent': 'Alx_api'}
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    response = requests.get(url, headers=header, allow_redirects=False)
+    """  Queries reddit for:
+        Number of subscribers"""
+    headers = {'User-Agent': 'xica369'}
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code == 200:
-        data = response.json()
-        print(data.get('data').get('subscribers'))
-    else:
-        return (0)
+        return (response.json().get("data").get("subscribers"))
+    return (0)
