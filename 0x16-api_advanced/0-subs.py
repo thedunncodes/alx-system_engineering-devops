@@ -13,10 +13,8 @@ def number_of_subscribers(subreddit):
     '''
 
     header = {"user_agent": "Alx_api"}
-
-    url = f'https://www.reddit.com/r/{subreddit}/about.json'
-
-    response = requests.get(url, headers=header)
+    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    response = requests.get(url, headers=header, allow_redirects=False)
 
     if response.status_code == 200:
         data = response.json()
